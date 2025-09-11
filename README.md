@@ -1,79 +1,53 @@
-Assignment 2: 
-Bibliography Parser in C++
+Assignment 2: Bibliography Parser in C++
 
-Description:
-------------
-This project implements a bibliography manager in C++, converted from a basic C parser.
-It is designed to read and parse .bib files, store publication details, and
-display them in a sorted order.
+This project is a small bibliography manager written in C++. It started from a
+basic C parser and was converted into an object-oriented design. The program
+reads .bib files, extracts publication details, and prints them in sorted order.
 
-Key requirements and how they are satisfied:
-1. Use of Object-Oriented Principles:
-   - Classes: Publication, Bibliography, String, AppManager.
-   - Data abstraction and data hiding: all fields are private, access via setters.
-   - Controlled interfaces: only necessary functions are public.
+How the requirements were met:
+- OOP principles: the code is split into classes (Publication, Bibliography,
+  String, AppManager). Fields are private, and only a limited public interface
+  is exposed.
+- No fixed-length C strings: instead of raw char*, a custom String class was
+  created which manages dynamic memory safely. This avoids the problems of
+  buffer sizes and also removes the need for <string> or STL containers.
+- Extra fields: each publication keeps the PDF URL, code URL, and presentation
+  URL, as asked in the assignment.
+- Sorting: operator< is implemented in Publication so that the list is ordered
+  first by year (descending), then by title in lexicographic order, and finally
+  by authors if needed.
+- Adding entries: operator+ is implemented in Bibliography to merge entries
+  from two different .bib files into a single list.
+- Constructors and destructors: the “rule of three” is followed in String,
+  Publication and Bibliography to make sure copies and clean-up work correctly.
+- Input validation: years are checked to be numeric; if not, they are replaced
+  with 0 and a warning is printed.
+- Restrictions: no standard C++ library classes or templates are used. All I/O
+  is done with the custom Console class from SimpleIO instead of printf/scanf.
 
-2. Removal of C-style strings and fixed buffers:
-   - All publication fields (year, title, authors, pdf, code, presentation, etc.)
-     use a custom String class (dynamic allocation).
-   - No use of std::string or STL containers.
-   - No <cstdio>, <cstring>, <string>, or <vector> headers.
+Building and running:
+- To build, just run `make` in the project folder. This will compile all the
+  sources and create the executable `bib_manager`.
+- To run, use:
+    ./bib_manager <bib_file_1> [bib_file_2]
 
-3. Additional publication details:
-   - Each Publication retains URL of PDF, URL of source code, and URL of presentation.
+The program will read the first bib file, ask whether you want to merge another
+file, and then print all entries in sorted order.
 
-4. Sorting requirement:
-   - operator< is overloaded in Publication to sort by:
-       - Year (descending order).
-       - Title (lexicographic, case-insensitive).
-       - Authors (tie-breaker).
+Example run:
+    $ ./bib_manager ref.bib_doi.bib
+    Parsed 27 entries from first file.
+    Do you want to merge another file? (y/n): n
 
-5. Merging bibliographies:
-   - operator+ is overloaded in Bibliography to merge entries from two .bib files.
+    Sorted entries:
+    Year: 2025
+    Title: CLOUD-CODEC: A New Way of Storing Traffic Cameras Footage at Scale
+    Authors: Kim, Hoyoung; Khudoyberdiev, Azimbek; ...
+    Booktitle: ACM Transactions on Multimedia Computing, Communications, and Applications
+    PDF: https://faculty.iiitd.ac.in/~arani/assets/pdf/tomm25.pdf
+    ...
 
-6. Constructors and destructors:
-   - Rule of Three implemented in String, Publication, and Bibliography classes.
-   - Proper cleanup of dynamically allocated memory.
-
-7. Input validation:
-   - Year is checked to ensure it is numeric.
-   - Invalid years are set to 0 with a warning.
-
-8. Compliance with restrictions:
-   - No standard C++ libraries or templates used.
-   - All I/O handled by custom Console class (SimpleIO), no printf/scanf.
-
-Technique of Building:
-----------------------
-- Ensure you have g++ installed.
-- Run `make` in the project root directory. This compiles all source files and
-  produces the executable `bib_manager`.
-
-Usage:
-------
-./bib_manager <bib_file_1> [bib_file_2]
-
-- The program will parse the first .bib file.
-- It prompts if you want to merge another file (using + operator).
-- It sorts the combined list and displays all publications.
-
-Example:
---------
-$ ./bib_manager ref.bib_doi.bib
-
-Output:
-Parsed 27 entries from first file.
-Do you want to merge another file? (y/n): n
-
-Sorted entries:
-Year: 2025<br>
-Title: CLOUD-CODEC: A New Way of Storing Traffic Cameras Footage at Scale<br>
-Authors: Kim, Hoyoung; Khudoyberdiev, Azimbek;<br>
-Booktitle: ACM Transactions on Multimedia Computing, Communications, and Applications<br>
-PDF: https://faculty.iiitd.ac.in/~arani/assets/pdf/tomm25.pdf<br>
-...
-
-Submission Notes:
------------------
-- Only source files, headers, Makefile, and README are included.
-- No object files or binaries are committed (per instructions).
+Submission notes:
+Only the source files, headers, Makefile, .bib file, and this README are
+included. No binaries or object files are part of the submission, in line with
+the instructions.

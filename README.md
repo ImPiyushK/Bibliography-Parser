@@ -66,11 +66,11 @@ Parsed 27 entries from first file.
 Do you want to merge another file? (y/n): n
 
 Sorted entries:
-Year: 2025
-Title: CLOUD-CODEC: A New Way of Storing Traffic Cameras Footage at Scale
-Authors: Kim, Hoyoung; Khudoyberdiev, Azimbek; ...
-Booktitle: ACM Transactions on Multimedia Computing, Communications, and Applications
-PDF: https://faculty.iiitd.ac.in/~arani/assets/pdf/tomm25.pdf
+Year: 2025<br>
+Title: CLOUD-CODEC: A New Way of Storing Traffic Cameras Footage at Scale<br>
+Authors: Kim, Hoyoung; Khudoyberdiev, Azimbek;<br>
+Booktitle: ACM Transactions on Multimedia Computing, Communications, and Applications<br>
+PDF: https://faculty.iiitd.ac.in/~arani/assets/pdf/tomm25.pdf<br>
 ...
 
 Submission Notes:

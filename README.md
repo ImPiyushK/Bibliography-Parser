@@ -1,4 +1,4 @@
-Assignment 2: Bibliography Parser in C++
+# Bibliography Parser
 
 This project is a small bibliography manager written in C++. It started from a
 basic C parser and was converted into an object-oriented design. The program
@@ -47,7 +47,3 @@ Example run:
     PDF: https://faculty.iiitd.ac.in/~arani/assets/pdf/tomm25.pdf
     ...
 
-Submission notes:
-Only the source files, headers, Makefile, .bib file, and this README are
-included. No binaries or object files are part of the submission, in line with
-the instructions.
